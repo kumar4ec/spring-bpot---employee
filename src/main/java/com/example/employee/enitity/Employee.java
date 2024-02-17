@@ -44,8 +44,8 @@ public class Employee {
 	@Column(name = "salary")
 	private Double salary;
         
-        @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-        @JoinColumn(name = "organizationId" , referencedColumnName = "organizationId",foreignKey = @ForeignKey(name = "fk_Emp_Orgid"))
+        @OneToOne(cascade = CascadeType.MERGE)
+        @JoinColumn(name = "organizationId" , referencedColumnName = "organizationId")
         @OnDelete(action = OnDeleteAction.CASCADE)
         private SYSOrganization organization;
 
