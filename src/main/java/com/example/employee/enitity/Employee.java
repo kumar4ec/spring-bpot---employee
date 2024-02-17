@@ -34,9 +34,6 @@ public class Employee {
 	@Column(name = "lastName", nullable = true, length = 255)
 	private String lastName;
 
-	@Column(name = "department", nullable = true, length = 25)
-	private String department;
-
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "status")
 	private EmployeeStatus employeeStatus;
@@ -48,20 +45,26 @@ public class Employee {
         @JoinColumn(name = "organizationId" , referencedColumnName = "organizationId")
         @OnDelete(action = OnDeleteAction.CASCADE)
         private SYSOrganization organization;
+        
+        @OneToOne(cascade = CascadeType.MERGE)
+        @JoinColumn(name = "departmentId" , referencedColumnName = "departmentId"
+        ,foreignKey = @ForeignKey(name = "FK_Department_DeptId"))
+        @OnDelete(action = OnDeleteAction.CASCADE)
+        private Department department;
 
 	public Employee() {
 
 	}
 
-	public Employee(String firstName, String lastName, String department, EmployeeStatus employeeStatus,
-			Double salary ,SYSOrganization organization) {
+	public Employee(String firstName, String lastName,EmployeeStatus employeeStatus,
+			Double salary ,SYSOrganization organization,Department department) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.department = department;
 		this.employeeStatus = employeeStatus;
 		this.salary = salary;
                 this.organization = organization;
+                this.department = department;
 	}
 
 	public Long getEmpId() {
@@ -86,14 +89,6 @@ public class Employee {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
 	}
 
 	public Double getSalary() {
