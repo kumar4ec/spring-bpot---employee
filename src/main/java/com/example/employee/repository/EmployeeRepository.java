@@ -48,5 +48,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>
     @Query("SELECT e.firstName, e.salary From Employee e ")
     List<Object[]> fetchEmployeeByNameAndSalary();
     
+    @Query("SELECT e.firstName, e.salary,e.organization.organizationName,e.department.departmentName From Employee "
+            + "e where e.organization.organizationId = ?1 and e.department.departmentId= ?2")
+    List<Object[]> fetchEmployeeByOrgAndDepartment(Integer orgId,Integer deptId);
+    
 
 }
