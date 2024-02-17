@@ -5,6 +5,7 @@
 package com.example.employee.testRunner;
 
 import com.example.employee.constants.EmployeeStatus;
+import com.example.employee.enitity.Department;
 import com.example.employee.enitity.Employee;
 import com.example.employee.enitity.SYSOrganization;
 import com.example.employee.repository.EmployeeRepository;
@@ -20,7 +21,6 @@ import org.springframework.stereotype.Component;
  * @author USER
  */
 @Component
-
 public class EmployeeTestRunner implements CommandLineRunner
 {
 
@@ -103,6 +103,7 @@ public class EmployeeTestRunner implements CommandLineRunner
         //To get tcs Organization
         Optional<SYSOrganization> optional = sYSOrganizationRepository.findById((short) 2);
 
+        
         SYSOrganization organization = null;
         if (optional != null)
         {
@@ -110,12 +111,12 @@ public class EmployeeTestRunner implements CommandLineRunner
         }
         System.err.println("organization:" + organization);
 
-        employeeRepository.save(new Employee("Ramya", "Padmanaban", "Developer", EmployeeStatus.PERMANANT, 10000.0, organization));
-        employeeRepository.save(new Employee("Sindhu", "", "Developer", EmployeeStatus.PERMANANT, 11000.0, organization));
-        employeeRepository.save(new Employee("anu", "", "Developer", EmployeeStatus.PROBATION, 12000.0, organization));
-        employeeRepository.save(new Employee("anjali", "", "Developer", EmployeeStatus.PROBATION, 5000.0, organization));
-        employeeRepository.save(new Employee("seeni", "", "Developer", EmployeeStatus.PROBATION, 10000.0, organization));
-        employeeRepository.save(new Employee("promoth", "", "Developer", EmployeeStatus.PROBATION, 5500.0, organization));
+        employeeRepository.save(new Employee("Ramya", "Padmanaban", EmployeeStatus.PERMANANT, 10000.0, organization, new Department(1)));
+        employeeRepository.save(new Employee("Sindhu", "", EmployeeStatus.PERMANANT, 11000.0, organization,new Department(1)));
+        employeeRepository.save(new Employee("anu", "",  EmployeeStatus.PROBATION, 12000.0, organization,new Department(1)));
+        employeeRepository.save(new Employee("anjali", "", EmployeeStatus.PROBATION, 5000.0, organization,new Department(2)));
+        employeeRepository.save(new Employee("seeni", "",  EmployeeStatus.PROBATION, 10000.0, organization,new Department(3)));
+        employeeRepository.save(new Employee("promoth", "",  EmployeeStatus.PROBATION, 5500.0, organization,new Department(4)));
 
     }
 
