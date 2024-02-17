@@ -36,13 +36,14 @@ public class SYSOrganizationTestRunner implements CommandLineRunner
     private SYSOrganization createOrganization()
     {
         SYSOrganization organization = new SYSOrganization();
-        organization.setOrganizationName("HCL");
+        organization.setOrganizationName("Infoysy");
         organization.setDeleted(Boolean.FALSE);
         organizationRepository.save(organization);
         
         return organization;
         
     }
+    
  
     
             
