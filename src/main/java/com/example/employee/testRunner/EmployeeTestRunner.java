@@ -12,6 +12,7 @@ import com.example.employee.repository.EmployeeRepository;
 import com.example.employee.repository.SYSOrganizationRepository;
 import java.util.List;
 import java.util.Optional;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -34,7 +35,7 @@ public class EmployeeTestRunner implements CommandLineRunner
     public void run(String... args) throws Exception
     {
 //        fetchEmployeeALL();
-        createEmployee();
+//        createEmployee();
 //        fetchEmployeeByOrgId();
 //        fetchEmployeeByName();
 //        fetchIndivialEmployee();
@@ -45,6 +46,24 @@ public class EmployeeTestRunner implements CommandLineRunner
 //        fetchEmployeeByNameAndSalary();
 //        deleteAllEmployee();
 //        deleteOrgById();
+        
+        fetchEmployeeByOrgAndDepartment();
+    }
+
+    private void fetchEmployeeByOrgAndDepartment()
+    {
+        List<Object[]> list = employeeRepository.fetchEmployeeByOrgAndDepartment(2,1);
+        System.out.println("list:" + list);
+        if (CollectionUtils.isNotEmpty(list))
+        {
+            for (Object[] objects : list)
+            {
+                System.out.println("name:" + (String) objects[0]);
+                System.out.println("Salary:" + (Double) objects[1]);
+                System.out.println("org Name:" + (String) objects[2]);
+                System.out.println("dept name:" + (String) objects[3]);
+            }
+        }
     }
 
     private void deleteAllEmployee()
@@ -103,7 +122,6 @@ public class EmployeeTestRunner implements CommandLineRunner
         //To get tcs Organization
         Optional<SYSOrganization> optional = sYSOrganizationRepository.findById((short) 2);
 
-        
         SYSOrganization organization = null;
         if (optional != null)
         {
@@ -112,11 +130,11 @@ public class EmployeeTestRunner implements CommandLineRunner
         System.err.println("organization:" + organization);
 
         employeeRepository.save(new Employee("Ramya", "Padmanaban", EmployeeStatus.PERMANANT, 10000.0, organization, new Department(1)));
-        employeeRepository.save(new Employee("Sindhu", "", EmployeeStatus.PERMANANT, 11000.0, organization,new Department(1)));
-        employeeRepository.save(new Employee("anu", "",  EmployeeStatus.PROBATION, 12000.0, organization,new Department(1)));
-        employeeRepository.save(new Employee("anjali", "", EmployeeStatus.PROBATION, 5000.0, organization,new Department(2)));
-        employeeRepository.save(new Employee("seeni", "",  EmployeeStatus.PROBATION, 10000.0, organization,new Department(3)));
-        employeeRepository.save(new Employee("promoth", "",  EmployeeStatus.PROBATION, 5500.0, organization,new Department(4)));
+        employeeRepository.save(new Employee("Sindhu", "", EmployeeStatus.PERMANANT, 11000.0, organization, new Department(1)));
+        employeeRepository.save(new Employee("anu", "", EmployeeStatus.PROBATION, 12000.0, organization, new Department(1)));
+        employeeRepository.save(new Employee("anjali", "", EmployeeStatus.PROBATION, 5000.0, organization, new Department(2)));
+        employeeRepository.save(new Employee("seeni", "", EmployeeStatus.PROBATION, 10000.0, organization, new Department(3)));
+        employeeRepository.save(new Employee("promoth", "", EmployeeStatus.PROBATION, 5500.0, organization, new Department(4)));
 
     }
 
