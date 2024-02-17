@@ -13,9 +13,6 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.stereotype.Component;
 
 /**
@@ -113,6 +110,7 @@ public class EmployeeTestRunner implements CommandLineRunner
     // 
     private void fetchEmployeeALL()
     {
+        System.out.println("com.example.employee.testRunner.EmployeeTestRunner.fetchEmployeeALL()");
         List<Employee> empList = employeeRepository.fetchemployee();
 
         for (Employee employee : empList)
@@ -120,7 +118,7 @@ public class EmployeeTestRunner implements CommandLineRunner
             System.out.println("getFirstName:" + employee.getFirstName());
             System.out.println("getOrganization:" + employee.getOrganization().getOrganizationName());
             System.out.println("getOrganization:" + employee.getOrganization().getOrganizationId());
-            System.out.println("getOrganization:" + employee.getOrganization().getDeleted());
+//            System.out.println("getOrganization:" + employee.getOrganization().getDeleted());
         }
     }
 
