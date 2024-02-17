@@ -33,8 +33,8 @@ public class EmployeeTestRunner implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception
     {
-        fetchEmployeeALL();
-//        createEmployee();
+//        fetchEmployeeALL();
+        createEmployee();
 //        fetchEmployeeByOrgId();
 //        fetchEmployeeByName();
 //        fetchIndivialEmployee();
@@ -43,23 +43,35 @@ public class EmployeeTestRunner implements CommandLineRunner
 //        fetchEmployeeByNativeQuery();
 //        fetchEmployeeByEmpName();
 //        fetchEmployeeByNameAndSalary();
+//        deleteAllEmployee();
+//        deleteOrgById();
     }
-    
+
+    private void deleteAllEmployee()
+    {
+        employeeRepository.deleteAll();
+    }
+
+    private void deleteOrgById()
+    {
+        sYSOrganizationRepository.deleteById((short) 2);
+    }
+
     /**
-     * 
+     *
      */
     private void fetchEmployeeByNameAndSalary()
     {
-       List<Object[]>list =  employeeRepository.fetchEmployeeByNameAndSalary();
+        List<Object[]> list = employeeRepository.fetchEmployeeByNameAndSalary();
         for (Object[] objects : list)
         {
-            System.out.println("name:"+(String)objects[0]);
-            System.out.println("salary:"+(Double)objects[1]);
+            System.out.println("name:" + (String) objects[0]);
+            System.out.println("salary:" + (Double) objects[1]);
         }
     }
 
     /**
-     * 
+     *
      */
     private void fetchEmployeeByNativeQuery()
     {
@@ -72,7 +84,7 @@ public class EmployeeTestRunner implements CommandLineRunner
     }
 
     /**
-     * 
+     *
      */
     private void fetchEmployeeByEmpName()
     {
