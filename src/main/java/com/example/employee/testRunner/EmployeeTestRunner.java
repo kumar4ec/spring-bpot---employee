@@ -47,7 +47,7 @@ public class EmployeeTestRunner implements CommandLineRunner
 //        deleteAllEmployee();
 //        deleteOrgById();
         
-        fetchEmployeeByOrgAndDepartment();
+//        fetchEmployeeByOrgAndDepartment();
     }
 
     private void fetchEmployeeByOrgAndDepartment()
