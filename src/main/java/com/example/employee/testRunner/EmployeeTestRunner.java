@@ -48,7 +48,7 @@ public class EmployeeTestRunner implements CommandLineRunner
 //        deleteOrgById();
         
 //        fetchEmployeeByOrgAndDepartment();
-        fetchDepartmentByTotalSalary();
+//        fetchDepartmentByTotalSalary();
     }
     
     private void fetchDepartmentByTotalSalary()
