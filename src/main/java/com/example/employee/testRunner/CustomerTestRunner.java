@@ -24,7 +24,7 @@ public class CustomerTestRunner implements CommandLineRunner
     @Override
     public void run(String... args) throws Exception
     {
-        fetchCustomerByOrder();
+//        fetchCustomerByOrder();
     }
     
     private void fetchCustomerByOrder()

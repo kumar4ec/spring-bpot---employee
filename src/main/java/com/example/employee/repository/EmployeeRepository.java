@@ -52,5 +52,13 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long>
             + "e where e.organization.organizationId = ?1 and e.department.departmentId= ?2")
     List<Object[]> fetchEmployeeByOrgAndDepartment(Integer orgId,Integer deptId);
     
+    @Query("SELECT SUM(e.salary),e.department.departmentName From Employee  "
+            + "e  GROUP BY  e.department")
+    List<Object[]> fetchDepartmentByTotalSalary();
+    
+    @Query("SELECT SUM(e.salary),e.department.departmentName From Employee  "
+            + "e  GROUP BY  e.department HAVING SUM(e.salary) > 20000")
+    List<Object[]> fetchDepartmentByTotalSalaryGreaterThan();
+    
 
 }

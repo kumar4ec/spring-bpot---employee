@@ -48,6 +48,22 @@ public class EmployeeTestRunner implements CommandLineRunner
 //        deleteOrgById();
         
 //        fetchEmployeeByOrgAndDepartment();
+        fetchDepartmentByTotalSalary();
+    }
+    
+    private void fetchDepartmentByTotalSalary()
+    {
+        List<Object[]> list = employeeRepository.fetchDepartmentByTotalSalary();
+        System.out.println("list:" + list);
+        if (CollectionUtils.isNotEmpty(list))
+        {
+            for (Object[] objects : list)
+            {
+                
+                System.out.println("Salary:" + (Double) objects[0]);
+                System.out.println("name:" + (String) objects[1]);
+            }
+        }
     }
 
     private void fetchEmployeeByOrgAndDepartment()
